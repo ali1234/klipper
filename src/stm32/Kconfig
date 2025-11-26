@@ -556,4 +556,16 @@ config STM32_CANBUS_PH13_PH14
     bool
     default y if STM32_MMENU_CANBUS_PH13_PH14 || STM32_CMENU_CANBUS_PH13_PH14
 
+######################################################################
+# idm function
+######################################################################
+
+config IDM_ENABLE
+    bool "IDM"
+    default n
+config FOR_K1
+    bool "Compiled for K1"
+    default n
+    depends on IDM_ENABLE
+
 endif

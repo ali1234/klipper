@@ -14,6 +14,7 @@
 #include "sched.h" // DECL_TASK
 #include "sensor_bulk.h" // sensor_bulk_report
 #include "trigger_analog.h" // trigger_analog_update
+#include "stm32/internal.h" // GPIO
 
 enum {
     LDC_PENDING = 1<<0, LDC_HAVE_INTB = 1<<1,
@@ -66,6 +67,7 @@ ldc1612_event(struct timer *timer)
 void
 command_config_ldc1612(uint32_t *args)
 {
+    turn_off_cartographer();
     struct ldc1612 *ld = oid_alloc(args[0], command_config_ldc1612
                                    , sizeof(*ld));
     ld->timer.func = ldc1612_event;
