@@ -140,13 +140,13 @@ cartographer_init(void)
       gpio_out_setup(GPIO('A', 1), 1);
     #endif
     cartographer_sleep(50000);
-    gpio_pwm_setup(GPIO('B', 4), 1, 1);
+    gpio_pwm_setup(GPIO('B', 4), 1, 1<<14);
     //complete=gpio_in_setup(GPIO('B', 4),0);
     led=gpio_out_setup(GPIO('B', 5), 1);
     temp_in=gpio_adc_setup(GPIO('A', 4));
     //irq_disable();
     cartographer_i2c= cartographer_mem_alloc(sizeof(*cartographer_i2c));
-    cartographer_i2c->i2c_hw = i2c_setup(0, 200000,(0x2A & 0x7f));
+    cartographer_i2c->i2c_hw = i2c_setup(0, 400000,(0x2A & 0x7f));
     cartographer_i2c->flags |= 2;
     writeRegister(0x1C,0x8000);
     configuration();
